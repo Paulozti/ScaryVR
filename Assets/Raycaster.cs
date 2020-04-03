@@ -45,6 +45,7 @@ public class Raycaster : MonoBehaviour
                 if (counter < 0)
                 {
                     fpswalk.positionToGo = hit.transform.position;
+                    fpswalk.steps.Play();
                 }
             }
             else

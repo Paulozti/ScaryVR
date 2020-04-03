@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class FPSWalk : MonoBehaviour
 {
+    public AudioSource steps;
 
     public CharacterController character;
     public Vector3 positionToGo;
