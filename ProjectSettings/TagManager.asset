@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Walkable
   - Door
+  - Key
+  - Clipboard
+  - Shelf
   layers:
   - Default
   - TransparentFX

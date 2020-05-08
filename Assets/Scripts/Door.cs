@@ -11,12 +11,17 @@ public class Door : MonoBehaviour
     public AudioSource audio;
     public AudioClip lockedSound;
     public AudioClip openingSound;
+    public AudioClip closeSound;
     public bool inRange = false;
+    public bool playingSound = false;
 
     private bool isMoving = false;
     // Start is called before the first frame update
-    
-   
+
+    private void Start()
+    {
+        audio = GetComponent<AudioSource>();
+    }
     public IEnumerator Abre()
     {
         if (!isMoving)
@@ -84,6 +89,11 @@ public class Door : MonoBehaviour
             }
             doorIsOpen = false;
             isMoving = false;
+            if (audio != null)
+            {
+                audio.clip = closeSound;
+                audio.Play();
+            }
         }
     }
 
@@ -91,18 +101,23 @@ public class Door : MonoBehaviour
     {
         if (!locked)
         {
-            audio.clip = openingSound;
-            audio.Play();
+            if(audio != null)
+            {
+                audio.clip = openingSound;
+                audio.Play();
+            }
+
             if (doorIsOpen)
                 StartCoroutine(Fecha());
             else
                 StartCoroutine(Abre());
         }
-        else
-        {
-            audio.clip = lockedSound;
-            audio.Play();
-        }
+    }
+
+    public IEnumerator stopSound(float time)
+    {
+        yield return new WaitForSeconds(time);
+        playingSound = false;
     }
 
     private void OnTriggerEnter(Collider other)
