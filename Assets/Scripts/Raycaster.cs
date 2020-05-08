@@ -22,8 +22,7 @@ public class Raycaster : MonoBehaviour
         // Does the ray intersect any objects 
         if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity))
         {
-            Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
-            Debug.Log("Did Hit");
+            
             textDebug.text = hit.transform.name;
             crosshair.transform.position = hit.point;
             crosshair.transform.forward = hit.normal;
@@ -46,6 +45,25 @@ public class Raycaster : MonoBehaviour
                 {
                     fpswalk.positionToGo = hit.transform.position;
                     fpswalk.steps.Play();
+                }
+            }
+            else if (hit.transform.gameObject.CompareTag("Door"))
+            {
+                var door = hit.transform.gameObject.GetComponent<Door>();
+                if (door != null)
+                {
+                    if (door.inRange)
+                    {
+                        crosshair.GetComponent<Image>().CrossFadeColor(Color.green, .5f, false, false);
+                        counter -= Time.deltaTime + 0.02f;
+                        if (counter < 0)
+                        {
+                            if (!door.locked)
+                                door.DoorInteract();
+                            else
+                                Debug.Log("Door is locked.");
+                        }
+                    }
                 }
             }
             else
