@@ -14,6 +14,7 @@ public class Door : MonoBehaviour
     public AudioClip closeSound;
     public bool inRange = false;
     public bool playingSound = false;
+    public bool canOpenWithKey = false;
 
     private bool isMoving = false;
     // Start is called before the first frame update
@@ -97,16 +98,16 @@ public class Door : MonoBehaviour
         }
     }
 
-    public void DoorInteract()
+    public void DoorInteract(bool hasKey)
     {
-        if (!locked)
+        if (!locked || (canOpenWithKey && hasKey))
         {
             if(audio != null)
             {
                 audio.clip = openingSound;
                 audio.Play();
             }
-
+            
             if (doorIsOpen)
                 StartCoroutine(Fecha());
             else

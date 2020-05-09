@@ -8,7 +8,8 @@ public class Raycaster : MonoBehaviour
     float counter=2;
     public FPSWalk fpswalk;
 
-    private bool hasKey;
+    public AudioSource keyAudio;
+    public bool hasKey;
     Clipboard clipboard;
     // Start is called before the first frame update
     void Start()
@@ -68,6 +69,7 @@ public class Raycaster : MonoBehaviour
                 {
                     hasKey = true;
                     Destroy(hit.transform.gameObject);
+                    keyAudio.Play();
                 }
 
             }
@@ -99,19 +101,21 @@ public class Raycaster : MonoBehaviour
                         if (counter < 0)
                         {
                             if (!door.locked)
-                                door.DoorInteract();
+                                door.DoorInteract(hasKey);
                             else
                             {
-                                if (!door.playingSound)
+                                if(hasKey && door.canOpenWithKey)
+                                {
+                                    door.DoorInteract(hasKey);
+                                }
+                                else if (!door.playingSound)
                                 {
                                     door.audio.clip = door.lockedSound;
                                     door.audio.Play();
                                     door.playingSound = true;
                                     StartCoroutine(door.stopSound(2f));
                                 }
-                                
                             }
-
                         }
                     }
                 }

@@ -1774,7 +1774,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8726ab94479bec847981649edbd3d95f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  functiontocall: QuitAction
 --- !u!1001 &470030060
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2063,7 +2062,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8726ab94479bec847981649edbd3d95f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  functiontocall: LoadGame
 --- !u!65 &480636127
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3488,6 +3486,7 @@ MonoBehaviour:
   textDebug: {fileID: 1053073265}
   crosshair: {fileID: 1782025649}
   fpswalk: {fileID: 0}
+  hasKey: 0
 --- !u!114 &963194230
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3497,7 +3496,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 963194225}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b953565b77e6ee244b7d1ff82e9c371b, type: 3}
+  m_Script: {fileID: 11500000, guid: 08a1327c4b2c6fe4da1ab3d1547ac60e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &992993380
@@ -3576,7 +3575,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1053073264
 Transform:
   m_ObjectHideFlags: 0
